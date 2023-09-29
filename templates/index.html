@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>MediaPipe capture</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <div class="row">
+        <div class="col-lg-8  offset-lg-2">
+            <img src="{{ url_for('video_feed', detection_type='face') }}" id="image">
+            <div class="button-container">
+                <button class="detect-button" onclick="changeDetectionType('face')">Detect Face</button>
+                <button class="detect-button" onclick="changeDetectionType('hands')">Detect Hands</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function changeDetectionType(type) {
+        // Use the correct detection type parameter in the URL
+        document.getElementById("image").src = "{{ url_for('video_feed', detection_type='') }}" + type;
+    }
+</script>
+{% endblock %}
